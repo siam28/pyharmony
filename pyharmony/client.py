@@ -178,13 +178,7 @@ class HarmonyClient(sleekxmpp.ClientXMPP):
         except Exception:
             logger.info('XMPP timeout, reattempting')
             result = iq_cmd.send(block=True)
-        payload = result.get_payload()
-        assert len(payload) == 1
-        action_cmd = payload[0]
-        if action_cmd.text == None:
-            return True
-        else:
-            return False
+        return result
 
 
     def power_off(self):
